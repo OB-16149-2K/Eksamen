@@ -73,3 +73,15 @@ function draw(){
 		selectedShape.reflection = reflectionSlider.value();
 	}
 }
+
+function addShape(x,y,size,color,type,reflection){
+	const newShape={
+		x,y,size,color,type,reflection,isDragging: false
+	}
+	shapes.push(newShape);
+	return newShape
+}
+
+function drawShape(shape){
+	
+}
