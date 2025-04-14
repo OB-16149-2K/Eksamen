@@ -22,6 +22,8 @@ function setup(){
 	createButton("Sekskant").position(285,40).mousePressed(() => shapeType = "sekskant");
 	//Jeg danner en knap til at skabe den valgte figur
 	createButton("Tlføj figur").position(20,270).mousePressed(()=> {isAddingShape = true});
+	//Jeg danner en knap til at fjerne den markerede figur
+	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
 	createDiv("Figur instillinger").position(20,80).style('font-size','16px');
 	colorpicker = createColorPicker(color(0,100,100)).position(20,120);
@@ -34,4 +36,12 @@ function setup(){
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
 	createSpan("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(120,380);
+ 	//Tilføj start figur
+ 	isAddingShape(150,150,40,color(0,100,100),"circle",8);
+}
+ 
+ 
+function draw(){
+    background(256);
+ 
 }
