@@ -1,7 +1,7 @@
 let shapes = []
 let kaleidoscopeRadius = 300
 let rotationAngle = 0
-let shapeType = "circle"
+let shapeType = "cirkel"
 let isAddingShape = false
 let rotationspeed = 0
 let isRotating = false
@@ -37,7 +37,7 @@ function setup(){
 	createSpan("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(120,380);
  	//Tilføj start figur
- 	isAddingShape(150,150,40,color(0,100,100),"circle",8);
+ 	isAddingShape(150,150,40,color(0,100,100),"cirkel",8);
 }
  
  
@@ -83,5 +83,32 @@ function addShape(x,y,size,color,type,reflection){
 }
 
 function drawShape(shape){
+	//Jeg tjekker her om figuren er inden for radius
+	if(shapeVisible){
+		if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius){
+			fill(shape.color);
+			noStroke();
+			switch(shape.type){
+				case "cirkel":
+					circle(shape.x,shape.y,shape.size);
+					break
+				case "kvadrat":
+					square(shape.x-shape.size/2,shape.y-shapesize/2,shape.size);
+					break
+				case "trekant":
+					triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
+					break
+				case "stjerne":
+					drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
+					break
+				case "sekskant":
+					drawHexagon(shape.x,shape.y,shape.size/2);
+					break
+			}
+		}
+	}
+}
+
+function mirrorShape(shape){
 	
 }
