@@ -110,5 +110,28 @@ function drawShape(shape){
 }
 
 function mirrorShape(shape){
+	push();
+	translate(witdh/2,height/2);
+	for(let i=0; i<shape.reflection; i++){
+		push();
+		rotate(TWO_PI/shape.reflection*i+rotationAngle);
+		let dx=shape.x-width/2
+		let dy=shape.y-height/2
+		let distance=dist(0,0,dx,dy)
+		let mirroredX=cos(angle)*distance
+		let mirroredY=sin(angle)*distance
+
+		translate(mirroredX,mirroredY);
+		rotate(angle);
+		fill(shape.color);
+		noStroke();
+		drawMirroredShape(shape);
+
+		pop();
+	}
+	pop();
+}
+
+function drawMirroredShape(shape){
 	
 }
