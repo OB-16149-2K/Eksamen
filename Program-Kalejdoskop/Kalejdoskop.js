@@ -43,5 +43,33 @@ function setup(){
  
 function draw(){
     background(256);
- 
+	//Rotation kontrol
+	if(isRotating){
+		rotationAngle += speedSlider.value()/500;
+	}
+	if(keyIsDown(65)) rotationAngle -= speedSlider.value()/500; //Hvis "A" bliver trykket
+	if(keyIsDown(68)) rotationAngle += speedSlider.value()/500; //Hvis "D" bliver trykket
+	//Tegn radius af kalejdoskopet
+	noFill();
+	stroke(0);
+	strokeWeight(2);
+	circle(width/2,height/2,kaleidoscopeRadius*2);
+	//Tegn figurer
+	for(let shape of shapes){
+		drawShape(shape);
+		if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius){
+			mirrorShape(shape);
+		}
+	}
+	//Markér den valgte figur
+	if(selectedShape){
+		stroke(0);
+		strokeWeight(2);
+		noFill();
+		drawShapeOutline(selectedShape);
+		//Opdater valgte figurs properties
+		selectedShape.color = colorPicker.color();
+		selectedShape.size = sizeSlider.value();
+		selectedShape.reflection = reflectionSlider.value();
+	}
 }
