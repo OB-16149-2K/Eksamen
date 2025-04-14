@@ -133,5 +133,25 @@ function mirrorShape(shape){
 }
 
 function drawMirroredShape(shape){
+	switch(shape.type){
+		case "cirkel":
+			circle(0,0,shape.size);
+			break
+		case "kvadrat":
+			square(-shape.size/2,-shape.size/2,shape.size);
+			break
+		case "trekant":
+			triangle(0,-shape.size/2,-shape.size/2,shape.size/2,shape.size/2,shape.size/2);
+			break
+		case "stjerne":
+			drawStar(0,0,shape.size/2,shape.size/4,5);
+			break
+		case "sekskant":
+			drawHexagon(0,0,shape.size/2);
+			break
+		}
+}
+
+function drawStar(x,y,radius1,radius2,npoints){
 	
 }
