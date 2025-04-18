@@ -30,13 +30,16 @@ function setup(){
 	colorPicker = createColorPicker(color(0,100,100)).position(20,120);
 	createSpan("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
+	sizeValueText = createSpan(sizeSlider.value()).position(160,180);
 	createSpan("Antal refleksioner").position(20,210);
 	reflectionSlider = createSlider(3,24,12).position(20,230);
+	reflectionValueText = createSpan(reflectionSlider.value()).position(160,230);
 	//Jeg danner nu paneler til at påvirke kalejdoskopets rotation
 	createDiv("Rotations instillinger").position(20,310).style('font-size','16px');
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
 	createSpan("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(120,380);
+	speedValueText = createSpan(speedSlider.value()).position(260,380);
  	//Tilføj start figur
  	addShape(150,130,40,color(0,100,100),"cirkel",8);
 	//Jeg laver en boks som fortæller antal refleksioner:
@@ -45,6 +48,10 @@ function setup(){
 
 function draw(){
     background(256);
+	//opdaterer slidertext værdier
+	sizeValueText.html(sizeSlider.value());
+    reflectionValueText.html(reflectionSlider.value());
+    speedValueText.html(speedSlider.value());
 	//Rotation kontrol
 	if(isRotating){
 		rotationAngle += speedSlider.value()/500;
