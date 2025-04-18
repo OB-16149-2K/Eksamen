@@ -54,16 +54,14 @@ function draw(){
 	stroke(0);
 	strokeWeight(2);
 	circle(width/2,height/2,kaleidoscopeRadius*2);
-	//Tegn spejlede figurer
-	for(let shape of shapes) {
-        if(dist(shape.x, shape.y, width/2, height/2) < kaleidoscopeRadius) {
-            mirrorShape(shape);
-        }
+    //jeg tegner her alle figurer man kan ændre på (både inden- og udenfor radius)
+    for(let shape of shapes) {
+        drawShape(shape);
     }
-	//tegn oprindelig figur, hvis synlig
-	if(shapeVisible) {
-        for(let shape of shapes) {
-            drawShape(shape);
+    //jeg tegner spejlede figurer (kun dem indenfor radius)
+    for(let shape of shapes) {
+        if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius) {
+            mirrorShape(shape);
         }
     }
 	//Markér den valgte figur
@@ -86,11 +84,9 @@ function addShape(x,y,size,color,type,reflection){
     shapes.push(newShape);
     return newShape;
 }
-
+//jeg tegner her mine figurer
 function drawShape(shape){
-	//Jeg tjekker her om figuren er inden for radius
 	if(shapeVisible){
-		if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius){
 			fill(shape.color);
 			noStroke();
 			switch(shape.type){
@@ -109,11 +105,10 @@ function drawShape(shape){
 				case "sekskant":
 					drawHexagon(shape.x,shape.y,shape.size/2);
 					break
-			}
 		}
 	}
 }
-	function mirrorShape(shape){
+function mirrorShape(shape){
 	push();
 	translate(width/2,height/2);
 	for(let i=0; i<shape.reflection; i++){
