@@ -200,4 +200,11 @@ function mousePressed(){
 	//Hvis man trykker udenfor en figur:
 	selectedShape=null
 }
+//her gøres så man kan bevæge den valgte figur
+function mouseDragged(){
+	if(selectedShape&&selectedShape.isDragging){
+		selectedShape.x=mouseX
+		selectedShape.y=mouseY
+	}
+}
 
