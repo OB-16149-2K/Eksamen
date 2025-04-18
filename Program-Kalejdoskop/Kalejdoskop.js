@@ -5,7 +5,7 @@ let shapeType = "cirkel"
 let isAddingShape = false
 let rotationspeed = 0
 let isRotating = false
-let selectedShape, colorPicker, sizeSlider, reflectionSlider, speedSlider
+let selectedShape,colorPicker,sizeSlider,reflectionSlider,speedSlider,sizeValueText,reflectionValueText,speedValueText
 let shapeVisible = true
 
 function setup(){
@@ -20,6 +20,7 @@ function setup(){
 	createButton("Trekant").position(150,40).mousePressed(() => shapeType = "trekant");
 	createButton("Stjerne").position(220,40).mousePressed(() => shapeType = "stjerne");
 	createButton("Sekskant").position(285,40).mousePressed(() => shapeType = "sekskant");
+	createButton("Ottekant").position(365,40).mousePressed(()=> shapeType = "ottekant");
 	//Jeg danner en knap til at skabe den valgte figur
 	createButton("Tlføj figur").position(20,270).mousePressed(()=> {isAddingShape = true});
 	//Jeg danner en knap til at fjerne den markerede figur
@@ -37,10 +38,11 @@ function setup(){
 	createSpan("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(120,380);
  	//Tilføj start figur
- 	addShape(150,150,40,color(0,100,100),"cirkel",8);
+ 	addShape(150,130,40,color(0,100,100),"cirkel",8);
+	//Jeg laver en boks som fortæller antal refleksioner:
+	
 }
- 
- 
+
 function draw(){
     background(256);
 	//Rotation kontrol
@@ -76,7 +78,7 @@ function draw(){
 		selectedShape.reflection = reflectionSlider.value();
 	}
 }
-
+//Jeg gør her at man kan tilføje nye figurer.
 function addShape(x,y,size,color,type,reflection){
     const newShape={
         x,y,size,color,type,reflection,isDragging: false
@@ -105,9 +107,13 @@ function drawShape(shape){
 				case "sekskant":
 					drawHexagon(shape.x,shape.y,shape.size/2);
 					break
+				case "ottekant":
+					drawOctagon(shape.x,shape.y,shape.size/2);
+					break
 		}
 	}
 }
+//her er koden til at spejle figurerne.
 function mirrorShape(shape){
 	push();
 	translate(width/2,height/2);
@@ -131,7 +137,7 @@ function mirrorShape(shape){
 	}
 	pop();
 }
-
+//Jeg tegner her de spejlede figurer.
 function drawMirroredShape(shape){
 	switch(shape.type){
 		case "cirkel":
@@ -149,9 +155,12 @@ function drawMirroredShape(shape){
 		case "sekskant":
 			drawHexagon(0,0,shape.size/2);
 			break
+		case "ottekant":
+			drawOctagon(0,0,shape.size/2);
+			break
 		}
 }
-
+//Her er instrukserne til at tegne en stjerne.
 function drawStar(x,y,radius1,radius2,npoints){
 	let angle = TWO_PI/npoints
 	let halfAngle = angle/2
@@ -166,7 +175,7 @@ function drawStar(x,y,radius1,radius2,npoints){
 	}
 	endShape(CLOSE);
 }
-
+//Her instrukser til sekskant.
 function drawHexagon(x,y,radius){
 	beginShape();
 	for(let i=0;i<TWO_PI;i+=TWO_PI/6){
@@ -176,7 +185,17 @@ function drawHexagon(x,y,radius){
 	}
 	endShape(CLOSE);
 }
-
+//Her instruker til en ottekant:
+function drawOctagon(x,y,radius){
+	beginShape();
+	for(let i=0;i<TWO_PI;i+=TWO_PI/8){
+		let sx=x+cos(i)*radius
+		let sy=y+sin(i)*radius
+		vertex(sx,sy);
+	}
+	endShape(CLOSE);
+}
+//Her tjekker jeg om musen bliver trykket ned og hvad konstekvensen skal være
 function mousePressed(){
 	if(isAddingShape){
 		let newShape = addShape(150,130,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
