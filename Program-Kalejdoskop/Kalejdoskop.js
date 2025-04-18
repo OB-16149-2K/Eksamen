@@ -207,4 +207,9 @@ function mouseDragged(){
 		selectedShape.y=mouseY
 	}
 }
-
+//stop bevægelse af valgt figur
+function mouseReleased(){
+	if(selectedShape){
+		selectedShape.isDragging=false
+	}
+}
