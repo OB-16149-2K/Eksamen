@@ -167,3 +167,13 @@ function drawStar(x,y,radius1,radius2,npoints){
 	endShape(CLOSE);
 }
 
+function drawHexagon(x,y,radius){
+	beginShape();
+	for(let i=0;i<TWO_PI;i+=TWO_PI/6){
+		let sx=x+cos(i)*radius
+		let sy=y+sin(i)*radius
+		vertex(sx,sy);
+	}
+	endShape(CLOSE);
+}
+
