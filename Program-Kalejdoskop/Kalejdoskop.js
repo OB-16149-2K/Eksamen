@@ -21,6 +21,7 @@ function setup(){
 	createButton("Stjerne").position(220,40).mousePressed(() => shapeType = "stjerne");
 	createButton("Sekskant").position(285,40).mousePressed(() => shapeType = "sekskant");
 	createButton("Ottekant").position(365,40).mousePressed(()=> shapeType = "ottekant");
+	createButton("Rombe").position(440,40).mousePressed(() => shapeType = "rombe");
 	//Jeg danner en knap til at skabe den valgte figur
 	createButton("Tlføj figur").position(20,270).mousePressed(()=> {isAddingShape = true});
 	//Jeg danner en knap til at fjerne den markerede figur
@@ -56,8 +57,14 @@ function draw(){
 	if(isRotating){
 		rotationAngle += speedSlider.value()/500;
 	}
-	if(keyIsDown(65)) rotationAngle -= speedSlider.value()/500; //Hvis "A" bliver trykket
-	if(keyIsDown(68)) rotationAngle += speedSlider.value()/500; //Hvis "D" bliver trykket
+	//Hvis "A" bliver trykket
+	if(keyIsDown(65)){
+		rotationAngle -= speedSlider.value()/500
+	} 
+	 //Hvis "D" bliver trykket
+	if(keyIsDown(68)){
+		rotationAngle += speedSlider.value()/500
+	} 
 	//Tegn radius af kalejdoskopet
 	noFill();
 	stroke(0);
@@ -117,6 +124,13 @@ function drawShape(shape){
 				case "ottekant":
 					drawOctagon(shape.x,shape.y,shape.size/2);
 					break
+				case "rombe":
+					push();
+					translate(shape.x, shape.y);
+					rotate(PI/4); // Drej 45 grader
+					square(-shape.size/2,-shape.size/2,shape.size);
+					pop();
+					break
 		}
 	}
 }
@@ -164,6 +178,12 @@ function drawMirroredShape(shape){
 			break
 		case "ottekant":
 			drawOctagon(0,0,shape.size/2);
+			break
+		case "rombe":
+			push();
+			rotate(PI/4);
+			square(-shape.size/2, -shape.size/2, shape.size);
+			pop();
 			break
 		}
 }
