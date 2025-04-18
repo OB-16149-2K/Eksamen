@@ -6,7 +6,7 @@ let isAddingShape = false
 let rotationspeed = 0
 let isRotating = false
 let selectedShape, colorPicker, sizeSlider, reflectionSlider, speedSlider
-let shapevisible = true
+let shapeVisible = true
 
 function setup(){
 	createCanvas(window);
@@ -219,4 +219,12 @@ function deleteSelected(){
 		shapes=shapes.filter(s=>s !== selectedShape);
 		selectedShape=null
 	}
+}
+//function til at rotere kalejdoskopet
+function toggleRotation(){
+	isRotating= !isRotating
+	//koden herunder tjekker med "?" om isRotating er sand, skulle den være det så roterer kalejdoskopet med speedSlider.value()/500 hvis ikke så hastigheden 0.
+	rotationspeed=isRotating ? speedSlider.value()/500 : 0
+	//jeg gør herunder de figurer man kan manipulere usynlige.
+	shapeVisible = !shapeVisible
 }
