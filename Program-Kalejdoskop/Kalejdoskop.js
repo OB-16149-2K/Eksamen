@@ -26,7 +26,7 @@ function setup(){
 	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
 	createDiv("Figur instillinger").position(20,80).style('font-size','16px');
-	colorpicker = createColorPicker(color(0,100,100)).position(20,120);
+	colorPicker = createColorPicker(color(0,100,100)).position(20,120);
 	createSpan("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
 	createSpan("Antal refleksioner").position(20,210);
@@ -54,13 +54,18 @@ function draw(){
 	stroke(0);
 	strokeWeight(2);
 	circle(width/2,height/2,kaleidoscopeRadius*2);
-	//Tegn figurer
-	for(let shape of shapes){
-		drawShape(shape);
-		if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius){
-			mirrorShape(shape);
-		}
-	}
+	//Tegn spejlede figurer
+	for(let shape of shapes) {
+        if(dist(shape.x, shape.y, width/2, height/2) < kaleidoscopeRadius) {
+            mirrorShape(shape);
+        }
+    }
+	//tegn oprindelig figur, hvis synlig
+	if(shapeVisible) {
+        for(let shape of shapes) {
+            drawShape(shape);
+        }
+    }
 	//Markér den valgte figur
 	if(selectedShape){
 		stroke(0);
@@ -75,11 +80,11 @@ function draw(){
 }
 
 function addShape(x,y,size,color,type,reflection){
-	const newShape={
-		x,y,size,color,type,reflection,isDragging: false
-	}
-	shapes.push(newShape);
-	return newShape
+    const newShape={
+        x,y,size,color,type,reflection,isDragging: false
+    }
+    shapes.push(newShape);
+    return newShape;
 }
 
 function drawShape(shape){
@@ -93,7 +98,7 @@ function drawShape(shape){
 					circle(shape.x,shape.y,shape.size);
 					break
 				case "kvadrat":
-					square(shape.x-shape.size/2,shape.y-shapesize/2,shape.size);
+					square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
 					break
 				case "trekant":
 					triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
@@ -108,16 +113,16 @@ function drawShape(shape){
 		}
 	}
 }
-
-function mirrorShape(shape){
+	function mirrorShape(shape){
 	push();
-	translate(witdh/2,height/2);
+	translate(width/2,height/2);
 	for(let i=0; i<shape.reflection; i++){
 		push();
 		rotate(TWO_PI/shape.reflection*i+rotationAngle);
 		let dx=shape.x-width/2
 		let dy=shape.y-height/2
 		let distance=dist(0,0,dx,dy)
+		let angle = atan2(dy, dx);
 		let mirroredX=cos(angle)*distance
 		let mirroredY=sin(angle)*distance
 
@@ -179,7 +184,7 @@ function drawHexagon(x,y,radius){
 
 function mousePressed(){
 	if(isAddingShape){
-		let newShape = addShape(130,120,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
+		let newShape = addShape(150,130,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
 		selectedShape = newShape
 		isAddingShape = false
 		return
@@ -226,7 +231,7 @@ function toggleRotation(){
 	//koden herunder tjekker med "?" om isRotating er sand, skulle den være det så roterer kalejdoskopet med speedSlider.value()/500 hvis ikke så hastigheden 0.
 	rotationspeed=isRotating ? speedSlider.value()/500 : 0
 	//jeg gør herunder de figurer man kan manipulere usynlige.
-	shapeVisible = !shapeVisible
+	shapeVisible = !isRotating
 }
 // function til at tjekke om musen er over en figur for at vælge den
 function isMouseOverShape(shape){
