@@ -228,3 +228,16 @@ function toggleRotation(){
 	//jeg gør herunder de figurer man kan manipulere usynlige.
 	shapeVisible = !shapeVisible
 }
+// function til at tjekke om musen er over en figur for at vælge den
+function isMouseOverShape(shape){
+	if(shape.type==="cirkel"){
+		return dist(mouseX,mouseY,shape.x,shape.y)<shape.size/2;
+	}else if(shape.type==="kvadrat"){
+		return abs(mouseX-shape.x)<shape.size/2 && abs(mouseY-shape.y)<shape.size/2;
+	}else if(shape.type==="trekant"){
+		return pointInTriangle(mouseX,mouseY,shape);
+	}else{
+		//for andre mere komplekse figurer (stjerne, sexkant etc.), bruger jeg cirklen omkring figuren som "hitboks".
+		return dist(mouseX,mouseY,shape.x,shape.y)<shape.size/2;
+	}
+}
