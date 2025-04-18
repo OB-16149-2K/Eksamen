@@ -213,3 +213,10 @@ function mouseReleased(){
 		selectedShape.isDragging=false
 	}
 }
+//function til at slette valgte figur
+function deleteSelected(){
+	if(selectedShape){
+		shapes=shapes.filter(s=>s !== selectedShape);
+		selectedShape=null
+	}
+}
