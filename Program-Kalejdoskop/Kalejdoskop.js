@@ -177,3 +177,27 @@ function drawHexagon(x,y,radius){
 	endShape(CLOSE);
 }
 
+function mousePressed(){
+	if(isAddingShape){
+		let newShape = addShape(130,120,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
+		selectedShape = newShape
+		isAddingShape = false
+		return
+	}
+	//tjek valgt shape
+	for(let i=shapes.length-1;i>=0;i--){
+		let shape=shapes[i]
+		if(isMouseOverShape(shape)){
+			selectedShape = shape
+			shape.isDragging = true
+			//opdater påvirkning af figur (farve,størrelse & refleksioner)
+			colorPicker.color(shape.color);
+			sizeSlider.value(shape.size);
+			reflectionSlider.value(shape.reflection);
+			return
+		}
+	}
+	//Hvis man trykker udenfor en figur:
+	selectedShape=null
+}
+
