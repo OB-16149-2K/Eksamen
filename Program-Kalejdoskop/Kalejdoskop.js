@@ -153,5 +153,17 @@ function drawMirroredShape(shape){
 }
 
 function drawStar(x,y,radius1,radius2,npoints){
-	
+	let angle = TWO_PI/npoints
+	let halfAngle = angle/2
+	beginShape();
+	for(let i=0;i<TWO_PI;i+=angle){
+		let sx = x+cos(i)*radius2
+		let sy = y+sin(i)*radius2
+		vertex(sx,sy);
+		sx = x+cos(i+halfAngle)*radius1;
+		sy = y+sin(i+halfAngle)*radius1;
+		vertex(sx,sy);
+	}
+	endShape(CLOSE);
 }
+
