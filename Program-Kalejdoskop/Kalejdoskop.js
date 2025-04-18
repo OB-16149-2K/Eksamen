@@ -241,3 +241,17 @@ function isMouseOverShape(shape){
 		return dist(mouseX,mouseY,shape.x,shape.y)<shape.size/2;
 	}
 }
+//jeg tjekker her om arealet/området indenfor en trekant
+function pointInTriangle(px,py,shape){
+	let x1=shape.x
+	let y1=shape.y-shape.size/2
+	let x2=shape.x-shape.size/2
+	let y2=shape.y+shape.size/2
+	let x3=shape.x+shape.size/2
+	let y3=y2
+	let A=0.5*(-y2*x3+y1*(-x2+x3)+x1*(y2-y3)+x2*y3)
+	let sign=A<0 ? -1:1
+	let s=(y1*x3-x1*y3+(y3-y1)*px+(x1-x3)*py)*sign
+	let t=(x1*y2-y1*x2+(y1-y2)*px+(x2-x1)*py)*sign
+	return s>0 && t>0 && (s+t)<2*A*sign;
+}
