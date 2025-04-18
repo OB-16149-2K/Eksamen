@@ -9,7 +9,7 @@ let selectedShape, colorPicker, sizeSlider, reflectionSlider, speedSlider
 let shapeVisible = true
 
 function setup(){
-	createCanvas(window);
+	createCanvas(1400,800);
 	//jeg sætter farvetypen til HueSaturationBrightness
 	colorMode(HSB,360,100,100);
 	//Jeg danner et kontrolpanel
@@ -37,7 +37,7 @@ function setup(){
 	createSpan("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(120,380);
  	//Tilføj start figur
- 	isAddingShape(150,150,40,color(0,100,100),"cirkel",8);
+ 	addShape(150,150,40,color(0,100,100),"cirkel",8);
 }
  
  
