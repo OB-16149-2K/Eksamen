@@ -100,9 +100,9 @@ function addShape(x,y,size,color,type,reflection){
     shapes.push(newShape);
     return newShape;
 }
-//jeg tegner her mine figurer
+//jeg tegner her mine figurer, og fjerner dem hvis jeg manuelt drejer kalejdoskopet
 function drawShape(shape){
-	if(shapeVisible){
+	if(shapeVisible && !keyIsDown(65) && !keyIsDown(68)){
 			fill(shape.color);
 			noStroke();
 			switch(shape.type){
