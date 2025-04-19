@@ -22,6 +22,7 @@ function setup(){
 	createButton("Sekskant").position(285,40).mousePressed(() => shapeType = "sekskant");
 	createButton("Ottekant").position(365,40).mousePressed(()=> shapeType = "ottekant");
 	createButton("Rombe").position(440,40).mousePressed(() => shapeType = "rombe");
+	createButton("Femkant").position(510,40).mousePressed(() => shapeType = "femkant");
 	//Jeg danner en knap til at skabe den valgte figur
 	createButton("Tlføj figur").position(20,270).mousePressed(()=> {isAddingShape = true});
 	//Jeg danner en knap til at fjerne den markerede figur
@@ -131,6 +132,9 @@ function drawShape(shape){
 					square(-shape.size/2,-shape.size/2,shape.size);
 					pop();
 					break
+				case "femkant":
+					drawPentagon(shape.x,shape.y,shape.size/2)
+					break
 		}
 	}
 }
@@ -185,6 +189,9 @@ function drawMirroredShape(shape){
 			square(-shape.size/2, -shape.size/2, shape.size);
 			pop();
 			break
+		case "femkant":
+			drawPentagon(0,0,shape.size/2)
+			break
 		}
 }
 //Her er instrukserne til at tegne en stjerne.
@@ -216,6 +223,16 @@ function drawHexagon(x,y,radius){
 function drawOctagon(x,y,radius){
 	beginShape();
 	for(let i=0;i<TWO_PI;i+=TWO_PI/8){
+		let sx=x+cos(i)*radius
+		let sy=y+sin(i)*radius
+		vertex(sx,sy);
+	}
+	endShape(CLOSE);
+}
+//her instrukser til en femkant:
+function drawPentagon(x,y,radius){
+	beginShape();
+	for(let i=0;i<TWO_PI;i+=TWO_PI/5){
 		let sx=x+cos(i)*radius
 		let sy=y+sin(i)*radius
 		vertex(sx,sy);
