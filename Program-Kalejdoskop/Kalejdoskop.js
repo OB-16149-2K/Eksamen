@@ -20,29 +20,29 @@ function setup(){
 	createButton("Kvadrat").position(80,40).mousePressed(() => shapeType = "kvadrat");
 	createButton("Trekant").position(150,40).mousePressed(() => shapeType = "trekant");
 	createButton("Stjerne").position(220,40).mousePressed(() => shapeType = "stjerne");
-	createButton("Sekskant").position(285,40).mousePressed(() => shapeType = "sekskant");
-	createButton("Ottekant").position(365,40).mousePressed(()=> shapeType = "ottekant");
-	createButton("Rombe").position(440,40).mousePressed(() => shapeType = "rombe");
-	createButton("Femkant").position(510,40).mousePressed(() => shapeType = "femkant");
+	createButton("Sekskant").position(20,70).mousePressed(() => shapeType = "sekskant");
+	createButton("Ottekant").position(100,70).mousePressed(()=> shapeType = "ottekant");
+	createButton("Rombe").position(175,70).mousePressed(() => shapeType = "rombe");
+	createButton("Femkant").position(245,70).mousePressed(() => shapeType = "femkant");
 	//Jeg danner en knap til at skabe den valgte figur
 	createButton("Tlføj figur").position(20,270).mousePressed(()=> {isAddingShape = true});
 	//Jeg danner en knap til at fjerne den markerede figur
 	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
-	createDiv("Figur instillinger").position(20,80).style('font-size','16px');
+	createP("Figur instillinger").position(20,80).style('font-size','16px');
 	colorPicker = createColorPicker(color(0,100,100)).position(20,120);
-	createSpan("Størrelse").position(20,160);
+	createDiv("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
-	sizeValueText = createSpan(sizeSlider.value()).position(160,180);
-	createSpan("Antal refleksioner").position(20,210);
+	sizeValueText = createDiv(sizeSlider.value()).position(160,180);
+	createDiv("Antal refleksioner").position(20,210);
 	reflectionSlider = createSlider(3,24,12).position(20,230);
-	reflectionValueText = createSpan(reflectionSlider.value()).position(160,230);
+	reflectionValueText = createDiv(reflectionSlider.value()).position(160,230);
 	//Jeg danner nu paneler til at påvirke kalejdoskopets rotation
 	createDiv("Rotations instillinger").position(20,310).style('font-size','16px');
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
-	createSpan("Hastighed").position(20,380);
-	speedSlider = createSlider(0,100,20).position(120,380);
-	speedValueText = createSpan(speedSlider.value()).position(260,380);
+	createDiv("Hastighed").position(20,380);
+	speedSlider = createSlider(0,100,20).position(80,380);
+	speedValueText = createDiv(speedSlider.value()).position(220,380);
  	//Tilføj start figur
  	addShape(150,130,40,color(0,100,100),"cirkel",8);
 	//Jeg laver en boks som fortæller antal refleksioner:
