@@ -11,8 +11,6 @@ let shapeVisible = true //boolean for hvor vidt grundfigurer skal kunne ses.
 
 function setup(){
 	createCanvas(1000,800);
-	//jeg sætter farvetypen til HueSaturationBrightness
-	colorMode(HSB,360,100,100);
 	//Jeg danner et kontrolpanel
 	createDiv("Figur").position(20,10).style('font-size','16px');
 	//Jeg danner knapper til valg af figur/shape
