@@ -1,12 +1,13 @@
-let shapes = []
-let kaleidoscopeRadius = 300
-let rotationAngle = 0
-let shapeType = "cirkel"
-let isAddingShape = false
-let rotationspeed = 0
-let isRotating = false
-let selectedShape,colorPicker,sizeSlider,reflectionSlider,speedSlider,sizeValueText,reflectionValueText,speedValueText
-let shapeVisible = true
+//her initielle variabler
+let shapes = [] //skaber her et array til opbevaring af brugte figurer
+let kaleidoscopeRadius = 300 //bestemmer her radius af kalejdoscop
+let rotationAngle = 0 //rotationsvinkel til bestemmelse af hvor lang figurer skal drejes
+let shapeType = "cirkel" //type af figur, her standard cirkel
+let isAddingShape = false //bruges til at være igang med at danne figurer eller ej
+let rotationspeed = 0 //hastighed for rotation
+let isRotating = false //boolean for hvor vidt kalejdoskopet drejer.
+let selectedShape,colorPicker,sizeSlider,reflectionSlider,speedSlider,sizeValueText,reflectionValueText,speedValueText //variabler for UI elementer
+let shapeVisible = true //boolean for hvor vidt grundfigurer skal kunne ses.
 
 function setup(){
 	createCanvas(1400,800);
