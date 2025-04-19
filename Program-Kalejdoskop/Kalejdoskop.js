@@ -10,7 +10,7 @@ let selectedShape,colorPicker,sizeSlider,reflectionSlider,speedSlider,sizeValueT
 let shapeVisible = true //boolean for hvor vidt grundfigurer skal kunne ses.
 
 function setup(){
-	createCanvas(1400,800);
+	createCanvas(1000,800);
 	//jeg sætter farvetypen til HueSaturationBrightness
 	colorMode(HSB,360,100,100);
 	//Jeg danner et kontrolpanel
@@ -71,14 +71,14 @@ function draw(){
 	noFill();
 	stroke(0);
 	strokeWeight(2);
-	circle(width/2,height/2,kaleidoscopeRadius*2);
+	circle(600,height/2,kaleidoscopeRadius*2);
     //jeg tegner her alle figurer man kan ændre på (både inden- og udenfor radius)
     for(let shape of shapes) {
         drawShape(shape);
     }
     //jeg tegner spejlede figurer (kun dem indenfor radius)
     for(let shape of shapes) {
-        if(dist(shape.x,shape.y,width/2,height/2)<kaleidoscopeRadius) {
+        if(dist(shape.x,shape.y,600,height/2)<kaleidoscopeRadius) {
             mirrorShape(shape);
         }
     }
@@ -142,11 +142,11 @@ function drawShape(shape){
 //her er koden til at spejle figurerne.
 function mirrorShape(shape){
 	push();
-	translate(width/2,height/2);
+	translate(600,height/2);
 	for(let i=0; i<shape.reflection; i++){
 		push();
 		rotate(TWO_PI/shape.reflection*i+rotationAngle);
-		let dx=shape.x-width/2
+		let dx=shape.x-600
 		let dy=shape.y-height/2
 		let distance=dist(0,0,dx,dy)
 		let angle = atan2(dy, dx);
