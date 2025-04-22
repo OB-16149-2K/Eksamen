@@ -105,27 +105,27 @@ function drawShape(shape){
 	if(shapeVisible && !keyIsDown(65) && !keyIsDown(68)){
 		fill(shape.color);
 		noStroke();
-			if("cirkel"){
-				circle(shape.x,shape.y,shape.size);
-			}else if("kvadrat"){
-				square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
-			}else if("trekant"){
-				triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
-			}else if("stjerne"){
-				drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
-			}else if("sekskant"){
-				drawHexagon(shape.x,shape.y,shape.size/2);
-			}else if("ottekant"){
-				drawOctagon(shape.x,shape.y,shape.size/2);
-			}else if("rombe"){
-				push();
-				translate(shape.x, shape.y);
-				rotate(PI/4); // Drej 45 grader
-				square(-shape.size/2,-shape.size/2,shape.size);
-				pop();
-			}else if("femkant"){
-				drawPentagon(shape.x,shape.y,shape.size/2)
-			}
+		if(shape.type ==="cirkel"){
+			circle(shape.x,shape.y,shape.size);
+		}else if(shape.type === "kvadrat"){
+			square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
+		}else if(shape.type ==="trekant"){
+			triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
+		}else if(shape.type ==="stjerne"){
+			drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
+		}else if(shape.type ==="sekskant"){
+			drawHexagon(shape.x,shape.y,shape.size/2);
+		}else if(shape.type ==="ottekant"){
+			drawOctagon(shape.x,shape.y,shape.size/2);
+		}else if(shape.type ==="rombe"){
+			push();
+			translate(shape.x, shape.y);
+			rotate(PI/4); // Drej 45 grader
+			square(-shape.size/2,-shape.size/2,shape.size);
+			pop();
+		}else if(shape.type ==="femkant"){
+			drawPentagon(shape.x,shape.y,shape.size/2)
+		}
 	}
 }
 //her er koden til at spejle figurerne.
@@ -154,24 +154,24 @@ function mirrorShape(shape){
 }
 //Jeg tegner her de spejlede figurer.
 function drawMirroredShape(shape){
-		if("cirkel"){
+		if(shape.type ==="cirkel"){
 			circle(0,0,shape.size);
-		}else if("kvadrat"){
+		}else if(shape.type ==="kvadrat"){
 			square(-shape.size/2,-shape.size/2,shape.size);
-		}else if("trekant"){
+		}else if(shape.type ==="trekant"){
 			triangle(0,-shape.size/2,-shape.size/2,shape.size/2,shape.size/2,shape.size/2);
-		}else if("stjerne"){
+		}else if(shape.type ==="stjerne"){
 			drawStar(0,0,shape.size/2,shape.size/4,5);
-		}else if("sekskant"){
+		}else if(shape.type ==="sekskant"){
 			drawHexagon(0,0,shape.size/2);
-		}else if("ottekant"){
+		}else if(shape.type ==="ottekant"){
 			drawOctagon(0,0,shape.size/2);
-		}else if("rombe"){
+		}else if(shape.type ==="rombe"){
 			push();
 			rotate(PI/4);
 			square(-shape.size/2, -shape.size/2, shape.size);
 			pop();
-		}else if("femkant"){
+		}else if(shape.type ==="femkant"){
 			drawPentagon(0,0,shape.size/2)
 		}
 }
