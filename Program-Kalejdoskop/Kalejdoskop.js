@@ -105,7 +105,6 @@ function drawShape(shape){
 	if(shapeVisible && !keyIsDown(65) && !keyIsDown(68)){
 		fill(shape.color);
 		noStroke();
-		switch(shape.type){
 			if("cirkel"){
 				circle(shape.x,shape.y,shape.size);
 			}else if("kvadrat"){
@@ -127,7 +126,6 @@ function drawShape(shape){
 			}else if("femkant"){
 				drawPentagon(shape.x,shape.y,shape.size/2)
 			}
-		}
 	}
 }
 //her er koden til at spejle figurerne.
@@ -156,30 +154,26 @@ function mirrorShape(shape){
 }
 //Jeg tegner her de spejlede figurer.
 function drawMirroredShape(shape){
-	switch(shape.type){
 		if("cirkel"){
-			circle(shape.x,shape.y,shape.size);
+			circle(0,0,shape.size);
 		}else if("kvadrat"){
-			square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
+			square(-shape.size/2,-shape.size/2,shape.size);
 		}else if("trekant"){
-			triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
+			triangle(0,-shape.size/2,-shape.size/2,shape.size/2,shape.size/2,shape.size/2);
 		}else if("stjerne"){
-			drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
+			drawStar(0,0,shape.size/2,shape.size/4,5);
 		}else if("sekskant"){
-			drawHexagon(shape.x,shape.y,shape.size/2);
+			drawHexagon(0,0,shape.size/2);
 		}else if("ottekant"){
-			drawOctagon(shape.x,shape.y,shape.size/2);
+			drawOctagon(0,0,shape.size/2);
 		}else if("rombe"){
 			push();
-			translate(shape.x, shape.y);
-			rotate(PI/4); // Drej 45 grader
-			square(-shape.size/2,-shape.size/2,shape.size);
+			rotate(PI/4);
+			square(-shape.size/2, -shape.size/2, shape.size);
 			pop();
 		}else if("femkant"){
-			drawPentagon(shape.x,shape.y,shape.size/2)
+			drawPentagon(0,0,shape.size/2)
 		}
-	}
-}
 }
 //Her er instrukserne til at tegne en stjerne.
 function drawStar(x,y,radius1,radius2,npoints){
