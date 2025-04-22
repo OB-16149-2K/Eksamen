@@ -28,7 +28,7 @@ function setup(){
 	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
 	createP("Figur instillinger").position(20,80).style('font-size','16px');
-	colorPicker = createColorPicker(color(0,100,100)).position(20,120);
+	colorPicker = createColorPicker(color(0,238,255)).position(20,120);
 	createDiv("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
 	sizeValueText = createDiv(sizeSlider.value()).position(160,180);
@@ -42,7 +42,7 @@ function setup(){
 	speedSlider = createSlider(0,100,20).position(80,380);
 	speedValueText = createDiv(speedSlider.value()).position(220,380);
  	//Tilføj start figur
- 	addShape(150,130,40,color(0,100,100),"cirkel",8);
+ 	addShape(150,130,40,color(0,238,255),"cirkel",8);
 	//Jeg laver en boks som fortæller antal refleksioner:
 	
 }
@@ -143,7 +143,6 @@ function mirrorShape(shape){
 		let mirroredY=sin(angle)*distance
 
 		translate(mirroredX,mirroredY);
-		rotate(angle);
 		fill(shape.color);
 		noStroke();
 		drawMirroredShape(shape);
