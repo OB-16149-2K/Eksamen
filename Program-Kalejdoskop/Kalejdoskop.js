@@ -103,37 +103,30 @@ function addShape(x,y,size,color,type,reflection){
 //jeg tegner her mine figurer, og fjerner dem hvis jeg manuelt drejer kalejdoskopet
 function drawShape(shape){
 	if(shapeVisible && !keyIsDown(65) && !keyIsDown(68)){
-			fill(shape.color);
-			noStroke();
-			switch(shape.type){
-				case "cirkel":
-					circle(shape.x,shape.y,shape.size);
-					break
-				case "kvadrat":
-					square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
-					break
-				case "trekant":
-					triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
-					break
-				case "stjerne":
-					drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
-					break
-				case "sekskant":
-					drawHexagon(shape.x,shape.y,shape.size/2);
-					break
-				case "ottekant":
-					drawOctagon(shape.x,shape.y,shape.size/2);
-					break
-				case "rombe":
-					push();
-					translate(shape.x, shape.y);
-					rotate(PI/4); // Drej 45 grader
-					square(-shape.size/2,-shape.size/2,shape.size);
-					pop();
-					break
-				case "femkant":
-					drawPentagon(shape.x,shape.y,shape.size/2)
-					break
+		fill(shape.color);
+		noStroke();
+		switch(shape.type){
+			if("cirkel"){
+				circle(shape.x,shape.y,shape.size);
+			}else if("kvadrat"){
+				square(shape.x-shape.size/2,shape.y-shape.size/2,shape.size);
+			}else if("trekant"){
+				triangle(shape.x,shape.y-shape.size/2,shape.x-shape.size/2,shape.y+shape.size/2,shape.x+shape.size/2,shape.y+shape.size/2);
+			}else if("stjerne"){
+				drawStar(shape.x,shape.y,shape.size/2,shape.size/4,5);
+			}else if("sekskant"){
+				drawHexagon(shape.x,shape.y,shape.size/2);
+			}else if("ottekant"){
+				drawOctagon(shape.x,shape.y,shape.size/2);
+			}else if("rombe"){
+				push();
+				translate(shape.x, shape.y);
+				rotate(PI/4); // Drej 45 grader
+				square(-shape.size/2,-shape.size/2,shape.size);
+				pop();
+			}else if("femkant"){
+				drawPentagon(shape.x,shape.y,shape.size/2)
+			}
 		}
 	}
 }
