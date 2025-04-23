@@ -33,13 +33,13 @@ function setup(){
 	sizeSlider = createSlider(10,100,40).position(20,180);
 	sizeValueText = createDiv(sizeSlider.value()).position(160,180);
 	createDiv("Antal refleksioner").position(20,210);
-	reflectionSlider = createSlider(3,24,12).position(20,230);
+	reflectionSlider = createSlider(3,30,12).position(20,230);
 	reflectionValueText = createDiv(reflectionSlider.value()).position(160,230);
 	//Jeg danner nu paneler til at påvirke kalejdoskopets rotation
 	createDiv("Rotations instillinger").position(20,310).style('font-weight','bold').style('font-size','17px');
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
 	createDiv("Hastighed").position(20,380);
-	speedSlider = createSlider(0,100,20).position(20,400);
+	speedSlider = createSlider(0,400,20).position(20,400);
 	speedValueText = createDiv(speedSlider.value()).position(160,400);
 	//Jeg skriver her tekstfelter med instruktioner:
 	createDiv("Instruktioner").position(20,430).style('font-weight','bold').style('font-size','17px');
@@ -59,7 +59,7 @@ function setup(){
 		t1.style('font-weight','bold').parent(tekst);
 		t2.parent(tekst);
 	//Tilføj start figur
-	addShape(150,140,40,color(0,238,255),"cirkel");
+	addShape(210,140,40,color(0,238,255),"cirkel");
 }
 
 function draw(){
@@ -74,11 +74,11 @@ function draw(){
 	}
 	//Hvis "A" bliver trykket
 	if(keyIsDown(65)){
-		rotationAngle -= speedSlider.value()/500
+		rotationAngle -= speedSlider.value()/500;
 	} 
 	 //Hvis "D" bliver trykket
 	if(keyIsDown(68)){
-		rotationAngle += speedSlider.value()/500
+		rotationAngle += speedSlider.value()/500;
 	} 
 	//Tegn radius af kalejdoskopet
 	noFill();
@@ -248,10 +248,6 @@ function mousePressed(){
 		if(isMouseOverShape(shape)){
 			selectedShape = shape
 			shape.isDragging = true
-			//opdater påvirkning af figur (farve,størrelse & refleksioner)
-			shape.color(colorPicker.color);
-			shape.size(sizeSlider.value);
-			shape.reflection(reflectionSlider.value);
 			return
 		}
 	}
