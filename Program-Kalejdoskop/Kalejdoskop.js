@@ -39,12 +39,12 @@ function setup(){
 	createDiv("Rotations instillinger").position(20,310).style('font-size','16px');
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
 	createDiv("Hastighed").position(20,380);
-	speedSlider = createSlider(0,100,20).position(80,380);
-	speedValueText = createDiv(speedSlider.value()).position(220,380);
+	speedSlider = createSlider(0,100,20).position(20,400);
+	speedValueText = createDiv(speedSlider.value()).position(160,400);
  	//Tilføj start figur
  	addShape(150,130,40,color(0,238,255),"cirkel",8);
-	//Jeg laver en boks som fortæller antal refleksioner:
-	
+	//Jeg vil her skrive tekstfelter med instruktioner:
+		
 }
 
 function draw(){
