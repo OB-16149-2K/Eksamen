@@ -109,7 +109,7 @@ function draw(){
 }
 //Jeg gør her at man kan tilføje nye figurer.
 function addShape(x,y,size,color,type,reflection){
-    const newShape={
+    let newShape={
         x,y,size,color,type,reflection,isDragging: false
     }
     shapes.push(newShape);
