@@ -12,7 +12,7 @@ let shapeVisible = true //boolean for hvor vidt grundfigurer skal kunne ses.
 function setup(){
 	createCanvas(1000,800);
 	//Jeg danner et kontrolpanel
-	createDiv("Figur").position(20,10).style('font-size','16px');
+	createDiv("Figur").position(20,10).style('font-weight','bold').style('font-size','17px');
 	//Jeg danner knapper til valg af figur/shape
 	createButton("Cirkel").position(20,40).mousePressed(() => shapeType = "cirkel");
 	createButton("Kvadrat").position(80,40).mousePressed(() => shapeType = "kvadrat");
@@ -27,8 +27,8 @@ function setup(){
 	//Jeg danner en knap til at fjerne den markerede figur
 	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
-	createP("Figur instillinger").position(20,80).style('font-size','16px');
-	colorPicker = createColorPicker(color(0,238,255)).position(20,120);
+	createP("Figur instillinger").position(20,80).style('font-weight','bold').style('font-size','17px');
+	colorPicker = createColorPicker(color(0,238,255)).position(20,125);
 	createDiv("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
 	sizeValueText = createDiv(sizeSlider.value()).position(160,180);
@@ -36,15 +36,30 @@ function setup(){
 	reflectionSlider = createSlider(3,24,12).position(20,230);
 	reflectionValueText = createDiv(reflectionSlider.value()).position(160,230);
 	//Jeg danner nu paneler til at påvirke kalejdoskopets rotation
-	createDiv("Rotations instillinger").position(20,310).style('font-size','16px');
+	createDiv("Rotations instillinger").position(20,310).style('font-weight','bold').style('font-size','17px');
 	createButton("Start/stop drejning").position(20,340).mousePressed(toggleRotation);
 	createDiv("Hastighed").position(20,380);
 	speedSlider = createSlider(0,100,20).position(20,400);
 	speedValueText = createDiv(speedSlider.value()).position(160,400);
- 	//Tilføj start figur
- 	addShape(150,130,40,color(0,238,255),"cirkel",8);
-	//Jeg vil her skrive tekstfelter med instruktioner:
-		
+	//Jeg skriver her tekstfelter med instruktioner:
+	createDiv("Instruktioner").position(20,430).style('font-weight','bold').style('font-size','17px');
+	let tekst = createDiv().position(20,455).size(280);
+	let t1 = createSpan('Figur & figur instillinger:')
+	let t2 = createSpan(' Når du gerne vil tilføje en figur skal du først under "Figur" vælge en type figur, herefter skal du ved hjælp af slidersne under "Figur instillinger" vælge hvor stor figuren skal være og hvor mange gange den skal reflekteres rundt i kalejdoskopet.');
+		t1.style('font-weight','bold').parent(tekst);
+		t2.parent(tekst);
+	tekst = createDiv().position(20,580).size(320);
+	t1 = createSpan('Rotations instillinger:');
+	t2 = createSpan(' Når du gerne vil rotere dit billede i kalejdoskopet kan du enten bruge tasterne "A" eller "D", eller bruge knappen som hedder "start/stop drejning" denne knap vil få kalejdoskopet til at dreje kontinuerligt, desuden kan man ændre hastigheden på drejningen ved hjælp af slideren.');
+		t1.style('font-weight','bold').parent(tekst);
+		t2.parent(tekst);
+	tekst = createDiv().position(20,700).size(360);
+	t1 = createSpan('Forbrug:');
+	t2 = createSpan(' Når du gerne vil tegne og spejle dine figurer skal du bare trække dem ind i cirklen, hvorefter du kan se figuren blive spejlet rundt, du kan altid trykke på figuren igen for at bevæge den eller skifte farve.');
+		t1.style('font-weight','bold').parent(tekst);
+		t2.parent(tekst);
+	//Tilføj start figur
+	addShape(150,140,40,color(0,238,255),"cirkel");
 }
 
 function draw(){
@@ -69,14 +84,14 @@ function draw(){
 	noFill();
 	stroke(0);
 	strokeWeight(2);
-	circle(600,height/2,kaleidoscopeRadius*2);
+	circle(width/2+150,height/2,kaleidoscopeRadius*2);
     //jeg tegner her alle figurer man kan ændre på (både inden- og udenfor radius)
     for(let shape of shapes) {
         drawShape(shape);
     }
     //jeg tegner spejlede figurer (kun dem indenfor radius)
     for(let shape of shapes) {
-        if(dist(shape.x,shape.y,600,height/2)<kaleidoscopeRadius) {
+        if(dist(shape.x,shape.y,width/2+150,height/2)<kaleidoscopeRadius) {
             mirrorShape(shape);
         }
     }
@@ -131,11 +146,11 @@ function drawShape(shape){
 //her er koden til at spejle figurerne.
 function mirrorShape(shape){
 	push();
-	translate(600,height/2);
+	translate(width/2+150,height/2);
 	for(let i=0; i<shape.reflection; i++){
 		push();
 		rotate(TWO_PI/shape.reflection*i+rotationAngle);
-		let dx=shape.x-600
+		let dx=shape.x-(width/2+150)
 		let dy=shape.y-height/2
 		let distance=dist(0,0,dx,dy)
 		let angle = atan2(dy, dx);
