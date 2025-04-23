@@ -55,7 +55,7 @@ function setup(){
 		t2.parent(tekst);
 	tekst = createDiv().position(20,700).size(360);
 	t1 = createSpan('Forbrug:');
-	t2 = createSpan(' Når du gerne vil tegne og spejle dine figurer skal du bare trække dem ind i cirklen, hvorefter du kan se figuren blive spejlet rundt, du kan altid trykke på figuren igen for at bevæge den eller skifte farve.');
+	t2 = createSpan(' Når du gerne vil tegne og spejle dine figurer skal du bare trække dem ind i cirklen, hvorefter du kan se figuren blive spejlet rundt, du kan altid trykke på figuren igen for at bevæge den eller skifte enten farve, størrelsen af figuren og antallet af reflektioner.');
 		t1.style('font-weight','bold').parent(tekst);
 		t2.parent(tekst);
 	//Tilføj start figur
@@ -249,9 +249,9 @@ function mousePressed(){
 			selectedShape = shape
 			shape.isDragging = true
 			//opdater påvirkning af figur (farve,størrelse & refleksioner)
-			colorPicker.color(shape.color);
-			sizeSlider.value(shape.size);
-			reflectionSlider.value(shape.reflection);
+			shape.color(colorPicker.color);
+			shape.size(sizeSlider.value);
+			shape.reflection(reflectionSlider.value);
 			return
 		}
 	}
