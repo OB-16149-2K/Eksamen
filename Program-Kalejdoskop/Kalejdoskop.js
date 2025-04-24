@@ -27,7 +27,7 @@ function setup(){
 	//Jeg danner en knap til at fjerne den markerede figur
 	createButton("Fjern figur").position(100,270).mousePressed(deleteSelected);
 	//Jeg danner paneler til at påvirke figurerne
-	createP("Figur instillinger").position(20,80).style('font-weight','bold').style('font-size','17px');
+	createDiv("Figur instillinger").position(20,95).style('font-weight','bold').style('font-size','17px');
 	colorPicker = createColorPicker(color(0,238,255)).position(20,125);
 	createDiv("Størrelse").position(20,160);
 	sizeSlider = createSlider(10,100,40).position(20,180);
