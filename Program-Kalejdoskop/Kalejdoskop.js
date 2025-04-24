@@ -317,7 +317,7 @@ function drawShapeOutline(shape){
 	}else if(shape.type==="kvadrat"){
 		square(shape.x-shape.size/2-5,shape.y-shape.size/2-5,shape.size+10);
 	}else if(shape.type==="trekant"){
-		triangle(shape.x,shape.y-shape.size/2-5,shape.x-shape.size/2-5, shape.y+shape.size/2+5,shape.x+shape.size/2+5, shape.y+shape.size/2+5);
+		triangle(shape.x,shape.y-shape.size/2-5,shape.x-shape.size/2-5, shape.y+shape.size/2+3,shape.x+shape.size/2+5, shape.y+shape.size/2+3);
 	}else{
 		//for de mere komplekse figurer nøjes jeg med at tegne en cirkel omkring dem.
 		circle(shape.x,shape.y,shape.size+10);
