@@ -59,7 +59,7 @@ function setup(){
 		t1.style('font-weight','bold').parent(tekst);
 		t2.parent(tekst);
 	//Tilføj start figur
-	addShape(210,140,40,color(0,238,255),"cirkel");
+	addShape(250,150,40,color(0,238,255),"cirkel");
 }
 
 function draw(){
@@ -238,7 +238,7 @@ function drawPentagon(x,y,radius){
 //Her tjekker jeg om musen bliver trykket ned og hvad konstekvensen skal være
 function mousePressed(){
 	if(isAddingShape){
-		let newShape = addShape(150,130,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
+		let newShape = addShape(250,150,sizeSlider.value(),colorPicker.color(),shapeType,reflectionSlider.value())
 		selectedShape = newShape
 		isAddingShape = false
 		return
