@@ -33,7 +33,7 @@ function setup(){
 	sizeSlider = createSlider(10,100,40).position(20,180);
 	sizeValueText = createDiv(sizeSlider.value()).position(160,180);
 	createDiv("Antal refleksioner").position(20,210);
-	reflectionSlider = createSlider(3,30,12).position(20,230);
+	reflectionSlider = createSlider(1,30,12).position(20,230);
 	reflectionValueText = createDiv(reflectionSlider.value()).position(160,230);
 	//Jeg danner nu paneler til at påvirke kalejdoskopets rotation
 	createDiv("Rotations instillinger").position(20,310).style('font-weight','bold').style('font-size','17px');
