@@ -159,6 +159,7 @@ function mirrorShape(shape){
 
 		translate(mirroredX,mirroredY);
 		fill(shape.color);
+		rotate(angle);
 		noStroke();
 		drawMirroredShape(shape);
 
